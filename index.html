@@ -3,191 +3,1180 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CortexGrove | Prabhakara Changala</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <title>Prabhakara Changala | Senior Software Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
-    body { background:#ffffff; color:#1f2937; }
-
-    header { padding:18px 60px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; background:#ffffff; border-bottom:1px solid #e5e7eb; z-index:10; }
-    header h1 { color:#1e3a8a; }
-    nav a { margin:0 12px; text-decoration:none; color:#1f2937; font-size:14px; }
-    nav a:hover { color:#d4af37; }
-
-    /* Professional Banner */
-    .banner {
-      height:420px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:60px 80px;
-      background:linear-gradient(120deg,#1e3a8a,#1e40af);
-      color:#fff;
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
     }
 
-    .banner-content {
-      max-width:600px;
+    /* ===== HEADER ===== */
+    header {
+      background: #fff;
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
-    .banner h2 {
-      font-size:42px;
-      font-weight:700;
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .banner p {
-      margin-top:15px;
-      font-size:18px;
-      color:#e0e7ff;
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e40af;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .banner .highlight {
-      color:#facc15;
+    nav {
+      display: flex;
+      gap: 28px;
     }
 
-    .banner-btn {
-      margin-top:25px;
-      padding:12px 25px;
-      background:#facc15;
-      border:none;
-      border-radius:8px;
-      font-weight:600;
-      cursor:pointer;
-      color:#000;
+    nav a {
+      text-decoration: none;
+      color: #666;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    .banner-btn:hover {
-      background:#eab308;
+    nav a:hover {
+      color: #1e40af;
     }
 
-    .banner-right {
-      text-align:right;
-      font-size:14px;
-      line-height:1.8;
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #1e40af;
+      transition: width 0.3s ease;
     }
 
-    section { padding:70px 80px; }
-    h3 { margin-bottom:25px; font-size:28px; color:#1e3a8a; }
-
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
-
-    .card {
-      background:#ffffff;
-      padding:20px;
-      border-radius:14px;
-      transition:0.3s;
-      border:1px solid #e5e7eb;
-      box-shadow:0 4px 10px rgba(0,0,0,0.05);
-      word-wrap: break-word;
-      overflow-wrap: break-word;
+    nav a:hover::after {
+      width: 100%;
     }
 
-    .card:hover {
-      transform:translateY(-6px);
-      border-color:#d4af37;
-      box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    .cta-btn {
+      padding: 8px 20px;
+      background: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
     }
 
-    .highlight { color:#d4af37; font-weight:600; }
+    .cta-btn:hover {
+      background: #1e3a8a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(30,64,175,0.3);
+    }
 
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      color: white;
+      padding: 55px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.4s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(30,64,175,0.82) 0%, rgba(30,58,138,0.88) 100%);
+      z-index: 1;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 56px;
+      font-weight: 700;
+      margin: 20px 0 10px 0;
+      letter-spacing: -1px;
+    }
+
+    .hero .subtitle {
+      font-size: 22px;
+      color: #e0e7ff;
+      margin-bottom: 25px;
+      font-weight: 300;
+    }
+
+    .hero-highlight {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      font-size: 15px;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn, .secondary-btn {
+      padding: 12px 28px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .primary-btn {
+      background: #fbbf24;
+      color: #1e40af;
+    }
+
+    .primary-btn:hover {
+      background: #fcd34d;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(251,191,36,0.4);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+    }
+
+    .secondary-btn:hover {
+      background: white;
+      color: #1e40af;
+      transform: translateY(-3px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #000;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 40px;
+      max-width: 600px;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    #about {
+      background: white;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text {
+      line-height: 1.8;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 16px;
+    }
+
+    .highlight-text {
+      color: #1e40af;
+      font-weight: 600;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      padding: 20px;
+      background: #f0f4ff;
+      border-radius: 8px;
+      border-left: 4px solid #1e40af;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e40af;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    /* ===== SKILLS SECTION ===== */
+    #skills {
+      background: #fff;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .skill-card:hover {
+      border-color: #1e40af;
+      box-shadow: 0 8px 24px rgba(30,64,175,0.12);
+      transform: translateY(-4px);
+    }
+
+    .skill-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #1e40af;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-card p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .skill-icon {
+      font-size: 24px;
+    }
+
+    /* ===== EXPERIENCE SECTION ===== */
+    #experience {
+      background: #f8f9fa;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .experience-item {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      border-left: 4px solid #1e40af;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .experience-item:hover {
+      box-shadow: 0 8px 24px rgba(30,64,175,0.12);
+      transform: translateX(4px);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .experience-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .experience-company {
+      color: #1e40af;
+      font-weight: 600;
+    }
+
+    .experience-date {
+      background: #f0f4ff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #1e40af;
+      font-weight: 500;
+    }
+
+    .experience-description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    #projects {
+      background: white;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .project-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .project-card:hover {
+      border-color: #1e40af;
+      box-shadow: 0 12px 32px rgba(30,64,175,0.15);
+      transform: translateY(-6px);
+    }
+
+    .project-header {
+      background: linear-gradient(135deg, #1e40af15 0%, #1e3a8a15 100%);
+      padding: 30px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .project-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    .project-desc {
+      padding: 20px 30px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      padding: 0 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: #f0f4ff;
+      color: #1e40af;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ===== INTERVIEW SECTION ===== */
+    #interview {
+      background: #f8f9fa;
+    }
+
+    .interview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 40px;
+    }
+
+    .interview-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .interview-card:hover {
+      border-color: #1e40af;
+      box-shadow: 0 8px 20px rgba(30,64,175,0.1);
+      transform: translateY(-3px);
+    }
+
+    .interview-card b {
+      display: block;
+      color: #000;
+      font-size: 14px;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .interview-card a {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #1e40af;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .interview-card a:hover {
+      background: #1e3a8a;
+      transform: scale(1.05);
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    #contact {
+      background: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: #1e40af;
+      box-shadow: 0 8px 20px rgba(30,64,175,0.1);
+    }
+
+    .contact-icon {
+      font-size: 28px;
+      color: #1e40af;
+      margin-bottom: 12px;
+    }
+
+    .contact-card b {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card a, .contact-card p {
+      color: #666;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      color: #1e40af;
+      text-decoration: underline;
+    }
+
+    /* ===== FOOTER ===== */
     footer {
-      text-align:center;
-      padding:20px;
-      background:#1e3a8a;
-      color:#fff;
-      font-size:13px;
+      background: #1a1a1a;
+      color: white;
+      padding: 50px 40px 30px;
+      margin-top: 60px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fbbf24;
+      margin-bottom: 10px;
+    }
+
+    .footer-desc {
+      font-size: 14px;
+      color: #999;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #e0e7ff;
+    }
+
+    .footer-links a {
+      display: block;
+      color: #e0e7ff;
+      text-decoration: none;
+      font-size: 13px;
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #fbbf24;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #333;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    .social-links a:hover {
+      background: #fbbf24;
+      color: #1a1a1a;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .header-container, .container {
+        padding: 0 20px;
+      }
+
+      nav {
+        gap: 15px;
+      }
+
+      .hero {
+        padding: 50px 20px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero .subtitle {
+        font-size: 18px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
+<!-- ===== HEADER ===== -->
 <header>
-  <h1>CortexGrove</h1>
-  <nav>
-    <a href="#summary">Summary</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="header-container">
+    <a href="#" class="logo">
+      <i class="fas fa-code"></i>
+      Prabhakara Changala
+    </a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="https://docs.google.com/document/d/1f8Qj_gockUF_0jtkl9EAZWaWoulIG6G-/export?format=pdf" target="_blank" class="cta-btn">Resume</a>
+    </nav>
+  </div>
 </header>
 
-<!-- Professional Banner -->
-<div class="banner">
-  <div class="banner-content">
-    <h2>Prabhakara Changala</h2>
-    <p>
-      Senior Software Engineer specializing in <span class="highlight">AI, Machine Learning, Power BI, and Microsoft Fabric</span>.
-      Building scalable enterprise applications and intelligent data platforms.
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+
+  <!-- Background Slideshow -->
+  <div class="hero-slides">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80')"></div>
+  </div>
+
+  <!-- Dark overlay for text readability -->
+  <div class="hero-overlay"></div>
+
+  <div class="hero-container">
+    <h1>Prabhakara Changala</h1>
+    <p class="subtitle">
+      <span class="hero-highlight">Senior Software Engineer</span>
     </p>
-    <button class="banner-btn">Download Resume</button>
+    <p class="subtitle" style="font-size: 18px; color: #e0e7ff;">
+      Specializing in AI, Machine Learning, Power BI, and Microsoft Fabric. Building scalable enterprise applications and intelligent data platforms.
+    </p>
+    <div class="hero-meta">
+      <span><i class="fas fa-briefcase"></i> 13+ Years Experience</span>
+      <span><i class="fas fa-check-circle"></i> 10+ Enterprise Projects</span>
+    </div>
+    <div class="hero-buttons">
+      <a href="#contact" class="primary-btn">Get In Touch</a>
+      <a href="https://www.linkedin.com/in/prabhakarachangala" target="_blank" class="secondary-btn">
+        <i class="fab fa-linkedin"></i> LinkedIn Profile
+      </a>
+    </div>
   </div>
-
-  <div class="banner-right">
-    <p><b>13+ Years Experience</b></p>
-    <p>.NET | Angular | Microservices</p>
-    <p>Power BI | Fabric | Data Analytics</p>
-    <p>AI | NLP | LLM | RAG</p>
-    <p style="margin-top:10px; color:#facc15;"><b>Techie from INDIA</b></p>
-  </div>
-</div>
-
-<section id="summary">
-  <h3>Professional Summary</h3>
-  <p>
-    <span class="highlight">13+ years</span> of experience in designing and delivering <span class="highlight">enterprise-scale applications</span> using <span class="highlight">.NET, Angular, and Cloud technologies</span>.
-    Strong expertise in <span class="highlight">Microsoft Fabric, Power BI, Data Modeling, and Analytics</span>.
-    Proven ability to build <span class="highlight">end-to-end data platforms</span>, implement <span class="highlight">CI/CD pipelines</span>, and develop <span class="highlight">AI/ML-driven solutions</span>.
-  </p>
 </section>
 
+<!-- ===== ABOUT SECTION ===== -->
+<section id="about">
+  <div class="container">
+    <h2>About Me</h2>
+    
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          I'm a <span class="highlight-text">Senior Software Engineer</span> with <span class="highlight-text">13+ years</span> of proven experience in designing and delivering <span class="highlight-text">enterprise-scale applications</span>.
+        </p>
+        <p>
+          My expertise spans <span class="highlight-text">.NET, Angular, Microservices, Cloud Architecture</span>, and building <span class="highlight-text">intelligent data platforms</span> using <span class="highlight-text">Microsoft Fabric</span> and <span class="highlight-text">Power BI</span>.
+        </p>
+        <p>
+          I have successfully led cross-functional teams, implemented <span class="highlight-text">CI/CD pipelines</span>, and architected <span class="highlight-text">AI/ML-driven solutions</span> that deliver measurable business impact across healthcare, fintech, and enterprise sectors.
+        </p>
+        <p>
+          Currently at <span class="highlight-text">Hallmark Healthcare</span> as a Senior Software Engineer, driving digital transformation through cutting-edge technologies and best architectural practices.
+        </p>
+      </div>
+      
+      <div>
+        <div class="stats">
+          <div class="stat-item">
+            <div class="stat-number">13+</div>
+            <div class="stat-label">Years of Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Enterprise Projects</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS SECTION ===== -->
 <section id="skills">
-  <h3>Technical Expertise</h3>
-  <div class="grid">
-    <div class="card"><b>AI & ML</b><br>NLP, LLM, RAG, Python Basics</div>
-    <div class="card"><b>Data & BI</b><br>Power BI, DAX, RLS, Fabric Lakehouse</div>
-    <div class="card"><b>Backend</b><br>.NET Core, Web API, Microservices</div>
-    <div class="card"><b>Frontend</b><br>Angular, TypeScript, UI Design</div>
-    <div class="card"><b>Cloud</b><br>Azure, AWS, CI/CD Pipelines</div>
-    <div class="card"><b>Database</b><br>SQL Server, Oracle, PostgreSQL</div>
+  <div class="container">
+    <h2>Technical Expertise</h2>
+    <p class="section-desc">Specialized knowledge across full-stack development, cloud architecture, data platforms, and AI/ML solutions.</p>
+    
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4><span class="skill-icon">🤖</span> AI & Machine Learning</h4>
+        <p>NLP, Large Language Models (LLM), Retrieval-Augmented Generation (RAG), Python, TensorFlow, Prompt Engineering</p>
+      </div>
+      
+      <div class="skill-card">
+        <h4><span class="skill-icon">📊</span> Data & Business Intelligence</h4>
+        <p>Power BI, DAX, RLS, Microsoft Fabric, Lakehouse, Data Modeling, ETL, Data Warehousing, Analytics</p>
+      </div>
+      
+      <div class="skill-card">
+        <h4><span class="skill-icon">⚙️</span> Backend Development</h4>
+        <p>.NET Core, C#, Web APIs, RESTful Services, Microservices Architecture, SOLID Principles, Design Patterns</p>
+      </div>
+      
+      <div class="skill-card">
+        <h4><span class="skill-icon">🎨</span> Frontend Development</h4>
+        <p>Angular, TypeScript, RxJS, HTML5, CSS3, UI/UX Design, Responsive Design, Material Design</p>
+      </div>
+      
+      <div class="skill-card">
+        <h4><span class="skill-icon">☁️</span> Cloud & DevOps</h4>
+        <p>Azure (VMs, App Service, Azure Data Studio), AWS, Docker, Kubernetes, CI/CD Pipelines, GitHub Actions</p>
+      </div>
+      
+      <div class="skill-card">
+        <h4><span class="skill-icon">💾</span> Databases</h4>
+        <p>SQL Server, Oracle, PostgreSQL, MySQL, Entity Framework, LINQ, Query Optimization, BI Semantics</p>
+      </div>
+
+      <div class="skill-card">
+        <h4><span class="skill-icon">🏗️</span> Enterprise Architecture</h4>
+        <p>SDLC, Design Patterns, Microservices, Clean Architecture, Event-Driven Design, Message Queuing</p>
+      </div>
+
+      <div class="skill-card">
+        <h4><span class="skill-icon">🧪</span> Quality & Testing</h4>
+        <p>Unit Testing, Integration Testing, NUnit, Moq, TDD, Performance Testing, Fiddler, Swagger</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="projects">
-  <h3>Key Projects</h3>
-  <div class="grid">
-    <div class="card">Healthcare Provider Compensation Platform</div>
-    <div class="card">CortexGrove – AI Learning Platform</div>
-    <div class="card">NetrAInsights – BI Platform</div>
-    <div class="card">BCG Pathways Application</div>
-    <div class="card">Mobility Marketplace Platform</div>
-    <div class="card">Microsoft OnePDM System</div>
-  </div>
-</section>
-
+<!-- ===== EXPERIENCE SECTION ===== -->
 <section id="experience">
-  <h3>Professional Experience</h3>
-  <div class="grid">
-    <div class="card"><b>Hallmark Healthcare</b><br>Senior Software Engineer (2023 - Present)</div>
-    <div class="card"><b>Cognizant</b><br>Senior Associate (2018 - 2023)</div>
-    <div class="card"><b>ValueMomentum</b><br>Senior Software Engineer (2018)</div>
-    <div class="card"><b>ELI Research</b><br>Senior Software Engineer (2016 - 2018)</div>
-    <div class="card"><b>United IT</b><br>Software Engineer (2013 - 2016)</div>
+  <div class="container">
+    <h2>Professional Experience</h2>
+    <p class="section-desc">Progressive career growth in enterprise software development and cloud architecture.</p>
+    
+    <div class="experience-list">
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <div class="experience-title">Senior Software Engineer</div>
+            <div class="experience-company">Hallmark Healthcare</div>
+          </div>
+          <div class="experience-date">2023 - Present</div>
+        </div>
+        <div class="experience-description">
+          Leading enterprise application development, cloud migration, and AI/ML integration for healthcare platform serving 50,000+ providers. Architected microservices, implemented CI/CD pipelines, and mentored junior engineers.
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <div class="experience-title">Senior Associate</div>
+            <div class="experience-company">Cognizant Technology Solutions</div>
+          </div>
+          <div class="experience-date">2018 - 2023</div>
+        </div>
+        <div class="experience-description">
+          Delivered enterprise solutions for Fortune 500 clients across healthcare and fintech. Tech lead for cross-functional teams, built data analytics platforms, and optimized system performance. 5+ years of progressive responsibility.
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <div class="experience-title">Senior Software Engineer</div>
+            <div class="experience-company">ValueMomentum Inc.</div>
+          </div>
+          <div class="experience-date">2018</div>
+        </div>
+        <div class="experience-description">
+          Full-stack development for enterprise mobile and web applications. Implemented RESTful APIs, optimized database queries, and established development best practices for the engineering team.
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <div class="experience-title">Senior Software Engineer</div>
+            <div class="experience-company">ELI Research</div>
+          </div>
+          <div class="experience-date">2016 - 2018</div>
+        </div>
+        <div class="experience-description">
+          Developed data analytics solutions and business intelligence platforms. Created BI dashboards, optimized ETL processes, and improved data pipeline performance by 40%.
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <div>
+            <div class="experience-title">Software Engineer</div>
+            <div class="experience-company">United IT</div>
+          </div>
+          <div class="experience-date">2013 - 2016</div>
+        </div>
+        <div class="experience-description">
+          Started career building core enterprise applications using .NET framework and SQL Server. Gained solid foundation in object-oriented design, database architecture, and software development life cycle.
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ===== PROJECTS SECTION ===== -->
+<section id="projects">
+  <div class="container">
+    <h2>Key Projects & Achievements</h2>
+    <p class="section-desc">Solutions that delivered significant business value and technical innovation.</p>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🏥</div>
+          <div class="project-name">Healthcare Provider Platform</div>
+        </div>
+        <div class="project-desc">
+          Designed and built compensation calculation engine serving 50,000+ healthcare providers. Implemented microservices architecture, real-time dashboards, and reduced calculation time by 60%.
+        </div>
+        <div class="project-tags">
+          <span class="tag">.NET Core</span>
+          <span class="tag">Azure</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Microservices</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🤖</div>
+          <div class="project-name">CortexGrove – AI Platform</div>
+        </div>
+        <div class="project-desc">
+          Enterprise AI learning platform with LLM integration, RAG pipeline, and document processing. Built scalable solution for knowledge management and intelligent search capabilities.
+        </div>
+        <div class="project-tags">
+          <span class="tag">LLM/RAG</span>
+          <span class="tag">Python</span>
+          <span class="tag">Azure AI</span>
+          <span class="tag">Langchain</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📈</div>
+          <div class="project-name">NetrAInsights BI Platform</div>
+        </div>
+        <div class="project-desc">
+          Enterprise analytics platform with 40+ interactive dashboards. Implemented complex DAX models, RLS security, and real-time data refresh reducing reporting time by 70%.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">DAX</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Fabric</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🛣️</div>
+          <div class="project-name">BCG Pathways App</div>
+        </div>
+        <div class="project-desc">
+          Full-stack Angular & .NET application for career development tracking. Implemented secure authentication, role-based access, and real-time notifications for 10,000+ users.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Angular</span>
+          <span class="tag">.NET Core</span>
+          <span class="tag">Azure AD</span>
+          <span class="tag">SignalR</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🚗</div>
+          <div class="project-name">Mobility Marketplace</div>
+        </div>
+        <div class="project-desc">
+          Multi-vendor marketplace platform handling 1000+ daily transactions. Built event-driven architecture with message queuing, ensuring 99.99% uptime and scalable performance.
+        </div>
+        <div class="project-tags">
+          <span class="tag">Microservices</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🔧</div>
+          <div class="project-name">Microsoft OnePDM</div>
+        </div>
+        <div class="project-desc">
+          Enterprise Product Data Management system integration. Implemented custom SDKs, data migration scripts, and automated reporting reducing manual effort by 80%.
+        </div>
+        <div class="project-tags">
+          <span class="tag">.NET</span>
+          <span class="tag">Enterprise APIs</span>
+          <span class="tag">ETL</span>
+          <span class="tag">SQL Server</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERVIEW RESOURCES ===== -->
+<section id="interview">
+  <div class="container">
+    <h2>Interview Resources & Guides</h2>
+    <p class="section-desc">Comprehensive technical interview preparation materials covering .NET full stack development and enterprise architecture.</p>
+    
+    <div class="interview-grid">
+      <div class="interview-card"><b>.NET Core</b><br><a href="https://manainterview.blogspot.com/2023/09/net-core.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>.NET Framework</b><br><a href="https://manainterview.blogspot.com/2023/09/net-framework.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>AGILE</b><br><a href="https://manainterview.blogspot.com/2023/09/agile.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Angular</b><br><a href="https://manainterview.blogspot.com/2023/09/prabhakar-changala-angular-top-100.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Architecture in SDLC</b><br><a href="https://manainterview.blogspot.com/2024/09/architecture-in-sdlc.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>ASP.NET MVC</b><br><a href="https://manainterview.blogspot.com/2023/09/aspnet-mvc.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>AWS</b><br><a href="https://manainterview.blogspot.com/2023/09/aws.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Azure</b><br><a href="https://manainterview.blogspot.com/2023/09/azure.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>C#</b><br><a href="https://manainterview.blogspot.com/2023/09/c.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>CI/CD</b><br><a href="https://manainterview.blogspot.com/2023/09/ci-cd.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Design Patterns</b><br><a href="https://manainterview.blogspot.com/2023/09/design-patterns.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Docker</b><br><a href="https://manainterview.blogspot.com/2023/09/docker.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Entity Framework</b><br><a href="https://manainterview.blogspot.com/2023/09/ef.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>GIT</b><br><a href="https://manainterview.blogspot.com/2023/09/git.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Message Queue (Azure/AWS)</b><br><a href="https://manainterview.blogspot.com/2024/09/message-queuing-net-with-azure-aws.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Microservices</b><br><a href="https://manainterview.blogspot.com/2023/09/microservices.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Oracle</b><br><a href="https://manainterview.blogspot.com/2023/09/oracle.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>OOP Concepts</b><br><a href="https://manainterview.blogspot.com/2023/09/oops.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>SDLC</b><br><a href="https://manainterview.blogspot.com/2023/09/sdlc.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>SignalR</b><br><a href="https://manainterview.blogspot.com/2024/09/signalr-faqs.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>SQL Server</b><br><a href="https://manainterview.blogspot.com/2023/09/sql-server.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Swagger & Fiddler</b><br><a href="https://manainterview.blogspot.com/2023/09/swagger-fiddler-postman.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Testing in .NET</b><br><a href="https://manainterview.blogspot.com/2023/09/testing-in-net-and-questions.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Version Control in .NET</b><br><a href="https://manainterview.blogspot.com/2023/09/version-controls-in-net.html" target="_blank">Learn More</a></div>
+      <div class="interview-card"><b>Web API</b><br><a href="https://manainterview.blogspot.com/2023/09/web-api.html" target="_blank">Learn More</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
 <section id="contact">
-  <h3>Contact</h3>
-  <div class="grid">
-    <div class="card"><b>Phone/WhatsApp</b><br>+91-812-143-7353</div>
-    <div class="card"><b>Primary Email</b><br>prabhakarc@cortexgrove.com</div>
-    <div class="card"><b>Alternate Email</b><br>cortexgrove@gmail.com</div>
-    <div class="card"><b>LinkedIn</b><br><a href="https://www.linkedin.com/in/prabhakarachangala" target="_blank">PrabhakaraChangala</a></div>
+  <div class="container">
+    <h2>Let's Connect</h2>
+    <p class="section-desc">Open to opportunities, discussions, and collaborations. Reach out through any of these channels.</p>
+    
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <b>Primary Email</b>
+        <a href="mailto:prabhakarc@cortexgrove.com">prabhakarc@cortexgrove.com</a>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <b>Alternate Email</b>
+        <a href="mailto:cortexgrove@gmail.com">cortexgrove@gmail.com</a>
+      </div>
+      
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+        <b>LinkedIn</b>
+        <a href="https://www.linkedin.com/in/prabhakarachangala" target="_blank">View Profile</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+        <b>WhatsApp</b>
+        <p>+91-812-143-7353</p>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon"><i class="fab fa-github"></i></div>
+        <b>GitHub</b>
+        <a href="https://github.com/prabhakarchangala" target="_blank">View Profile</a>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ===== FOOTER ===== -->
 <footer>
-  <p>© 2026 CortexGrove | Built by Prabhakara Changala</p>
+  <div class="footer-container">
+    <div class="footer-content">
+      <div>
+        <div class="footer-brand">CortexGrove</div>
+        <p class="footer-desc">
+          Enterprise software engineer specializing in scalable cloud architecture, data platforms, and AI-driven solutions.
+        </p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/prabhakarachangala" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:prabhakarc@cortexgrove.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <a href="#interview">Interview Guides</a>
+        <a href="https://docs.google.com/document/d/1f8Qj_gockUF_0jtkl9EAZWaWoulIG6G-/export?format=pdf" target="_blank">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Prabhakara Changala | All Rights Reserved</p>
+      <!-- <p>Built with <span style="color: #fbbf24;">❤</span> | Available for opportunities worldwide</p> -->
+    </div>
+  </div>
 </footer>
+
+<!-- Hero Background Slideshow -->
+<script>
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    setInterval(function() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4000);
+  })();
+</script>
 
 </body>
 </html>
