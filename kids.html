@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Diet Plan - April 2026</title>
+
+<style>
+body {
+    font-family: 'Segoe UI';
+    margin:0;
+    background: linear-gradient(#fffde7,#e8f5e9);
+}
+
+header {
+    background: linear-gradient(90deg,#ff9800,#4caf50);
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+.day {
+    margin:15px;
+    padding:15px;
+    border-radius:15px;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.today { border:3px solid green; }
+.tomorrow { border:3px solid orange; }
+
+h2 { color:#2E7D32; }
+
+/* Cards */
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:10px;
+}
+
+.card {
+    background:#fafafa;
+    border-radius:12px;
+    padding:10px;
+    border-left:5px solid #4CAF50;
+}
+
+.time {
+    font-weight:bold;
+    color:#ff5722;
+}
+
+.kids {
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* Badges */
+.badge {
+    display:inline-block;
+    font-size:10px;
+    padding:3px 6px;
+    border-radius:6px;
+    margin-top:5px;
+    color:white;
+}
+
+.protein { background:#4CAF50; }
+.energy { background:#2196F3; }
+.iron { background:#2E7D32; }
+.immunity { background:#ff7043; }
+
+.label {
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:6px;
+    color:white;
+    margin-left:5px;
+}
+
+.today-label { background:green; }
+.tomorrow-label { background:orange; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🍎 Kids Diet Plan - April 2026</h1>
+<p>Devanshi (9+) | ShreeTej (5+)</p>
+</header>
+
+<div id="plan"></div>
+
+<script>
+
+const weekDays = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+const startIndex = 2; // April 1, 2026 = Wednesday
+
+const today = new Date().getDate();
+const tomorrow = today + 1;
+
+const plan = {
+
+"Monday":[
+["7 AM","Milk + Badam","200ml + 5","150ml + 3"],
+["8 AM","Idli + Drumstick Sambar + Chutney","3","2"],
+["10:30 AM","Banana","1","½"],
+["1 PM","Rice + Chicken Curry + Spinach Fry + Curd","1 cup","¾ cup"],
+["5 PM","Egg Boiled","1","1"],
+["8 PM","Chapati + Carrot Beans Curry","2","1"]
+],
+
+"Tuesday":[
+["7 AM","Milk + Dates","200ml + 2","150ml + 1"],
+["8 AM","Upma + Chutney","1 bowl","¾"],
+["10:30 AM","Apple","1","½"],
+["1 PM","Tomato Rice + Curd + Cucumber Salad","1 cup","¾ cup"],
+["5 PM","Egg Omelette","1","1"],
+["8 PM","Chapati + Paneer Curry","2","1"]
+],
+
+"Wednesday":[
+["7 AM","Milk + Almonds","200ml","150ml"],
+["8 AM","Dosa + Drumstick Sambar","2","1"],
+["10:30 AM","Guava","1","½"],
+["1 PM","Rice + Fish Curry + Beetroot Fry + Curd","1 cup","¾ cup"],
+["5 PM","Sweet Corn","1 cup","½"],
+["8 PM","Chapati + Egg Curry","2","1"]
+],
+
+"Thursday":[
+["7 AM","Milk + Dry Fruits","200ml","150ml"],
+["8 AM","Pongal + Chutney","1 bowl","¾"],
+["10:30 AM","Orange","1","½"],
+["1 PM","Dal Rice + Curd Rice + Pickle","1 cup","¾ cup"],
+["5 PM","Dry Fruit Laddu","1","½"],
+["8 PM","Chapati + Bottle Gourd Curry","2","1"]
+],
+
+"Friday":[
+["7 AM","Milk + Raisins","200ml","150ml"],
+["8 AM","Chapati + Potato Curry","2","1"],
+["10:30 AM","Papaya","1 cup","½"],
+["1 PM","Rice + Chicken Curry + Beans Curry + Curd","1 cup","¾ cup"],
+["5 PM","Sprouts","1 bowl","½"],
+["8 PM","Chapati + Fish Curry","2","1"]
+],
+
+"Saturday":[
+["7 AM","Milk + Badam","200ml","150ml"],
+["8 AM","Poha + Peanuts","1 bowl","¾"],
+["10:30 AM","Watermelon","1 cup","½"],
+["1 PM","Veg Pulao + Raita + Veg Salad","1 cup","¾ cup"],
+["5 PM","Banana Milkshake","1 glass","½"],
+["8 PM","Rasam Rice + Cabbage Fry","1 cup","¾ cup"]
+],
+
+"Sunday":[
+["7 AM","Milk + Dates","200ml","150ml"],
+["8 AM","Paneer Dosa + Chutney","2","1"],
+["10:30 AM","Mixed Fruits Bowl","1 bowl","½"],
+["1 PM","Chicken Biryani + Raita + Cucumber","1 cup","¾ cup"],
+["5 PM","Paneer Cubes","1 cup","½"],
+["8 PM","Chapati + Carrot Peas Curry","2","1"]
+]
+
+};
+
+function getBadges(meal){
+meal = meal.toLowerCase();
+let badges = `<span class="badge protein">Protein</span>
+<span class="badge energy">Energy</span>`;
+
+if(meal.includes("spinach") || meal.includes("beetroot") || meal.includes("dates") || meal.includes("drumstick") || meal.includes("sprouts")){
+badges += `<span class="badge iron">Iron</span>`;
+}
+
+if(meal.includes("milk") || meal.includes("fruit") || meal.includes("egg") || meal.includes("almond") || meal.includes("orange")){
+badges += `<span class="badge immunity">Immunity</span>`;
+}
+
+return badges;
+}
+
+const container = document.getElementById("plan");
+
+for(let i=1;i<=30;i++){
+
+let dayName = weekDays[(startIndex + i - 1) % 7];
+let meals = plan[dayName];
+
+let highlight="";
+let label="";
+
+if(i===today){
+highlight="today";
+label="<span class='label today-label'>Today</span>";
+}
+else if(i===tomorrow){
+highlight="tomorrow";
+label="<span class='label tomorrow-label'>Tomorrow</span>";
+}
+
+let html=`<div class="day ${highlight}">
+<h2>${i} April (${dayName}) ${label}</h2>
+<div class="grid">`;
+
+meals.forEach(m=>{
+html+=`
+<div class="card">
+<div class="time">${m[0]}</div>
+<p><b>${m[1]}</b></p>
+
+<div class="kids">
+👧 ${m[2]}<br>
+👦 ${m[3]}
+</div>
+
+<div>${getBadges(m[1])}</div>
+
+</div>`;
+});
+
+html+="</div></div>";
+container.innerHTML+=html;
+}
+
+</script>
+
+</body>
+</html>
